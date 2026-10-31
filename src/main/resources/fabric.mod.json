@@ -1,0 +1,30 @@
+{
+	"schemaVersion": 1,
+	"id": "macfunctionkeys",
+	"version": "${version}",
+	"name": "MacFunctionKeys",
+	"description": "Automatically unlocks top-row F1-F12 keys on macOS while Minecraft is focused, with triple-tap Fn toggle and on-screen HUD toast.",
+	"authors": [
+		"MacFunctionKeys"
+	],
+	"license": "CC0-1.0",
+	"icon": "assets/macfunctionkeys/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"com.macfunctionkeys.client.MacFunctionKeysClient"
+		]
+	},
+	"mixins": [
+		{
+			"config": "macfunctionkeys.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

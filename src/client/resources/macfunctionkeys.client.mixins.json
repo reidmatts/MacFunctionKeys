@@ -1,0 +1,12 @@
+{
+	"required": true,
+	"package": "com.macfunctionkeys.mixin.client",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"WindowMixin",
+		"GuiMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
