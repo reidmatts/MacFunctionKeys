@@ -4,16 +4,9 @@ plugins {
 }
 
 repositories {
-}
-
-loom {
-	splitEnvironmentSourceSets()
-
-	mods {
-		"macfunctionkeys" {
-			sourceSet sourceSets.main
-			sourceSet sourceSets.client
-		}
+	maven {
+		name = 'NeoForged'
+		url = 'https://maven.neoforged.net/releases/'
 	}
 }
 
@@ -21,13 +14,14 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	compileOnly "net.neoforged.fancymodloader:loader:12.0.12"
 }
 
 processResources {
 	def version = project.version
 	inputs.property "version", version
 
-	filesMatching("fabric.mod.json") {
+	filesMatching(["fabric.mod.json", "META-INF/neoforge.mods.toml"]) {
 		expand "version": version
 	}
 }

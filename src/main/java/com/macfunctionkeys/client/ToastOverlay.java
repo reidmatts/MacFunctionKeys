@@ -1,19 +1,20 @@
 package com.macfunctionkeys.client;
 
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public final class ToastOverlay {
 	public static final long TOAST_DURATION_MS = 2500L;
 	private static final long FADE_IN_MS = 180L;
 	private static final long FADE_OUT_MS = 350L;
 
+	private static final AtomicBoolean REGISTERED = new AtomicBoolean(false);
 	private static volatile long toastStartTimeMs = 0L;
 	private static volatile boolean toastStandardFKeysMode = true;
 
@@ -21,11 +22,9 @@ public final class ToastOverlay {
 	}
 
 	public static void init() {
-		HudRenderCallback.EVENT.register(ToastOverlay::render);
-		HudElementRegistry.addLast(
-				Identifier.fromNamespaceAndPath("macfunctionkeys", "mode_toast"),
-				(graphics, deltaTracker) -> HudRenderCallback.EVENT.invoker().onHudRender(graphics, deltaTracker)
-		);
+		if (REGISTERED.compareAndSet(false, true)) {
+			HudRenderCallback.EVENT.register(ToastOverlay::render);
+		}
 	}
 
 	public static void showToast(boolean standardFKeysActive) {

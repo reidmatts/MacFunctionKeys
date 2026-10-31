@@ -19,14 +19,14 @@ public class GuiMixin {
 					target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;applyCursor(Lcom/mojang/blaze3d/platform/Window;)V"
 			)
 	)
-	private void macfunctionkeys$renderHudCallbackWhenNotInLevel(
+	private void macfunctionkeys$renderToastOverlay(
 			DeltaTracker deltaTracker,
 			boolean renderHud,
 			boolean renderScreen,
 			CallbackInfo ci,
 			@Local GuiGraphicsExtractor graphics
 	) {
-		if (!renderHud && graphics != null) {
+		if (graphics != null) {
 			HudRenderCallback.EVENT.invoker().onHudRender(graphics, deltaTracker);
 		}
 	}
