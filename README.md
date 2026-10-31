@@ -13,7 +13,7 @@ A client-side Fabric mod for macOS (Minecraft Java Edition `26.3`) that automati
 
 - **OS**: macOS
 - **Minecraft**: `26.3`
-- **Fabric Loader**: `>=0.20.1`
+- **Fabric Loader**: `>=0.18.0`
 - **Fabric API**: `>=0.165.0+26.3`
 - **Java**: `25+`
 
